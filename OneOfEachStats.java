@@ -12,17 +12,18 @@ public class OneOfEachStats {
 		// Gets the two command-line arguments
 		int numberOfChecks = Integer.parseInt(args[0]);
 		int seed = Integer.parseInt(args[1]);
+		Random generator = new Random (seed);
 		double average = 0;
 		int twoChildren = 0;
 		int threeChildren = 0;
 		int fourChildrenOrMore = 0;
 		double sumCounters = 0;
 		for(int i = 0;i<numberOfChecks;i++){
-			int random = (int) (Math.random()*2);
+			int random = (int) (generator.nextDouble()*2);
 			int currentChild = random;
 			int counter = 1;
 			while(currentChild==random){
-				currentChild = (int) (Math.random()*2);
+				currentChild = (int) (generator.nextDouble()*2);
 				counter +=1;
 			}
 			
