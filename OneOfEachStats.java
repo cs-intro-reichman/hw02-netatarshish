@@ -10,7 +10,7 @@ import java.util.Random;
 public class OneOfEachStats {
 	public static void main (String[] args) {
 		// Gets the two command-line arguments
-		int T = Integer.parseInt(args[0]);
+		int numberOfChecks = Integer.parseInt(args[0]);
 		int seed = Integer.parseInt(args[1]);
 		// Initailizes a random numbers generator with the given seed value
         Random generator = new Random(seed);  
@@ -24,6 +24,54 @@ public class OneOfEachStats {
 		//// just like you had in the previous version, except that the 
 		//// randomization will be based on the given seed.
 		//// This is the only change that you have to do in the program.
-		    
+		
+		double average = 0;
+		int twoChildren = 0;
+		int threeChildren = 0;
+		int fourChildrenOrMore = 0;
+		for(int i = 0;i<numberOfChecks;i++){
+			int random = (int) (generator.nextDouble()*2);
+			int currentChild = random;
+			int counter = 1;
+			while(currentChild==random||counter==0){
+				currentChild = (int) (generator.nextDouble()*2);
+				counter +=1;
+			}
+			if(i==0){
+				average=counter;
+			}
+			else{
+				average = (counter+average)/2;
+			}
+		if(counter==2){
+			twoChildren+=1;
+		}
+		else if (counter==3){
+			threeChildren+=1;
+		}
+		else{
+			fourChildrenOrMore+=1;
+		}
+		
 	}
+	System.out.println("Average: "+average+" children to get at least one of each gender.");
+	System.out.println("Number of families with 2 children: "+twoChildren);
+	System.out.println("Number of families with 3 children: "+threeChildren);
+	System.out.println("Number of families with 4 or more children: "+fourChildrenOrMore);
+	if(twoChildren>=threeChildren){
+		if(twoChildren>=fourChildrenOrMore){
+			System.out.println("The most common number of children is 2.");
+		}
+		else{
+			System.out.println("The most common number of children is 4 or more");
+		}
+	}
+	else{
+		if(threeChildren>=fourChildrenOrMore){
+			System.out.println("The most common number of children is 3.");
+		}
+	}
+	
+}
+		    
 }
