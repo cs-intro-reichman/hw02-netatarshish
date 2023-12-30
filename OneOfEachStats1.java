@@ -6,26 +6,21 @@
  */
 public class OneOfEachStats1 {
 	public static void main (String[] args) {
-		import Random;
 		int numberOfChecks = Integer.parseInt(args[0]);
 		double average = 0;
 		int twoChildren = 0;
 		int threeChildren = 0;
 		int fourChildrenOrMore = 0;
+		double sumCounters = 0;
 		for(int i = 0;i<numberOfChecks;i++){
 			int random = (int) (Math.random()*2);
 			int currentChild = random;
 			int counter = 1;
-			while(currentChild==random||counter==0){
+			while(currentChild==random){
 				currentChild = (int) (Math.random()*2);
 				counter +=1;
 			}
-			if(i==0){
-				average=counter;
-			}
-			else{
-				average = (counter+average)/2;
-			}
+			
 		if(counter==2){
 			twoChildren+=1;
 		}
@@ -35,8 +30,10 @@ public class OneOfEachStats1 {
 		else{
 			fourChildrenOrMore+=1;
 		}
+		sumCounters+=counter;
 		
 	}
+	average = sumCounters/numberOfChecks;
 	System.out.println("Average: "+average+" children to get at least one of each gender.");
 	System.out.println("Number of families with 2 children: "+twoChildren);
 	System.out.println("Number of families with 3 children: "+threeChildren);
